@@ -1,18 +1,17 @@
 import React from 'react';
-import moment from 'moment';
 import './Table.scss';
 
 const renderHeders = headers => 
   <div className="Table-row Table-row--main Table-row--dark">
-    { headers.map(item => <div className="Table-column">{ item }</div>) }
+    { headers.map(item => <div className="Table-column" key={ item }>{ item }</div>) }
   </div>;
 
 const renderData = data => data.map((item, index) => {
-  const { amount, date, card_last_four } = item;
+  const { amount, date, card_last_four, key } = item;
   const classColumn = !Object.is(index, data.length - 1) ? 'Table-row' : 'Table-row Table-row--last';
   
   return (
-    <div className={ classColumn }>
+    <div className={ classColumn } key={ key }>
       <div className="Table-column">{ amount }</div>
       <div className="Table-column">{ date }</div>
       <div className="Table-column"> { card_last_four }</div>
